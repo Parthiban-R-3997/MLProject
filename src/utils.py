@@ -27,7 +27,8 @@ def evaluate_models(X_train, y_train,X_test,y_test,models):
         report = {}
 
         for i in range(len(list(models))):
-            model = list(models.values())[i]
+            model = list(models.values())[i]  ##Inside the loop, the code extracts the current machine learning model by using the list() function to get the i-th element of the list of models and assigns it to the model variable. 
+            #The list() function is used here to convert the dictionary values to a list so that we can access them by index.
 
             model.fit(X_train, y_train)  # Train model
 

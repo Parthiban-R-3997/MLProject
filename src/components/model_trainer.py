@@ -56,10 +56,18 @@ class ModelTrainer:
 
             ## To get best model name from dict
 
-            best_model_name = list(model_report.keys())[
-                list(model_report.values()).index(best_model_score)
-            ]
-            best_model = models[best_model_name]
+            best_model_name = list(model_report.keys())[list(model_report.values()).index(best_model_score)]
+            '''
+            list(model_report.keys()) creates a list of all the model names in model_report.
+            list(model_report.values()) creates a list of all the test scores in model_report.
+            list(model_report.values()).index(best_model_score) finds the index of best_model_score in the list of test scores. For example, if best_model_score is 0.81, this would return the index 1 (since 0.81 is the second element in the list).
+            list(model_report.keys())[index] selects the model name corresponding to the index found in the previous step. For example, if best_model_score is 0.81 and 'Model B' has index 1 in the list of test scores, this would return 'Model B'.
+            '''
+            best_model = models[best_model_name] ## Returns the best model object key and this line is used for making pickle file
+            '''
+            This means that 'Model A' is a LinearRegression object, 'Model B' is a RandomForestRegressor object, and 'Model C' is an XGBRegressor object.
+            #The second line of code selects the best-performing model object by looking up its name in the models dictionary.
+            '''
 
             if best_model_score<0.6:
                 raise CustomException("No best model found")
